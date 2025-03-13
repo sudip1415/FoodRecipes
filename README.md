@@ -11,6 +11,7 @@ A simple React-based application that allows users to search for recipes, view d
 
 ## Technologies Used
 - React.js
+- Vite
 - Tailwind CSS
 - TheMealDB API
 
@@ -33,7 +34,7 @@ A simple React-based application that allows users to search for recipes, view d
 
 4. Start the development server:
    ```sh
-   npm start
+   npm run dev
    ```
 
 ## Usage
@@ -54,10 +55,11 @@ A simple React-based application that allows users to search for recipes, view d
 recipe-app/
 │-- src/
 │   ├── App.jsx  # Main React component
-│   ├── index.js  # Entry point
+│   ├── main.jsx  # Entry point for Vite
 │   ├── styles.css  # Global styles (if any)
 │-- public/
 │-- package.json
+│-- vite.config.js  # Vite configuration
 │-- README.md
 ```
 
