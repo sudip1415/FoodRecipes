@@ -1,75 +1,58 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import Button from "./Components/Button";
+import FoodCard from "./Components/FoodCard";
+import Food from "./Components/Food";
+import RecipeDetail from "./pages/RecipeDetail";
 
 function App() {
-  const baseUrl = "https://www.themealdb.com/api/json/v1/1";
-
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [expanded, setExpanded] = useState({}); // Track expanded state for each recipe
-
-  const fetchRecipe = async () => {
-    if (!search.trim()) return;
-    try {
-      const response = await fetch(`${baseUrl}/search.php?s=${search}`);
-      const data = await response.json();
-      setRecipes(data.meals || []);
-      setExpanded({}); // Reset expanded state when new recipes are fetched
-    } catch (error) {
-      console.log("Error occurred:", error);
-      setRecipes([]);
-    }
-  };
-
   return (
     <>
-      <div className="flex flex-col items-center p-6 bg-zinc-700 text-white">
-        <input
-          className="m-4 px-5 py-3 rounded border"
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Enter food"
-        />
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded"
-          onClick={fetchRecipe}
-        >
-          Get Recipe
-        </button>
-      </div>
+      {/* <div className="relative w-full h-screen overflow-hidden">
+        <motion.video
+          autoPlay
+          muted
+          loop
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+          className="absolute top-0 left-0 w-full h-full object-cover blur-xs"
+          src="/src/assets/Bg_video.mp4"
+        ></motion.video>
 
-      <div className="w-full p-5 grid grid-cols-1 bg-slate-700 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {recipes.map((recipe) => {
-          const isExpanded = expanded[recipe.idMeal];
-          return (
-            <div key={recipe.idMeal} className="bg-transparent w-[80%] m-auto rounded-md p-4">
-              <h2 className="text-white text-lg font-semibold">{recipe.strMeal}</h2>
-              <img
-                src={recipe.strMealThumb}
-                alt={recipe.strMeal}
-                className="w-full h-32 object-cover rounded-2xl mt-3 transition-transform transform hover:scale-110"
-              />
-              <p className="text-white mt-2">
-                {isExpanded ? recipe.strInstructions : `${recipe.strInstructions.substring(0, 150)}...`}
-              </p>
-              {recipe.strInstructions.length > 150 && (
-                <button
-                  className="text-blue-400 underline mt-2"
-                  onClick={() =>
-                    setExpanded((prev) => ({
-                      ...prev,
-                      [recipe.idMeal]: !isExpanded,
-                    }))
-                  }
-                >
-                  {isExpanded ? "Read Less" : "Read More"}
-                </button>
-              )}
-            </div>
-          );
-        })}
-      </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+        <div className="relative flex flex-col items-center justify-center h-screen text-white text-center px-6">
+          <motion.h1
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-5xl text-orange-500 font-bold mb-4"
+          >
+            Discover Delicious Recipes
+          </motion.h1>
+
+          <motion.p
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="text-lg mb-6"
+          >
+            Find the best recipes and cook your favorite meals effortlessly.
+          </motion.p>
+
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="px-6 py-3 bg-amber-500 text-white font-semibold text-lg rounded-lg shadow-lg transition"
+          >
+            Explore Recipes
+          </motion.button>
+        </div>
+      </div> */}
+      {/* <Food /> */}
+      <RecipeDetail />
     </>
+
   );
 }
 
